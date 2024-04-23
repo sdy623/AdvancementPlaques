@@ -50,7 +50,6 @@ public class AdvancementPlaquesToastGuiWithToastManager extends ManagedToastComp
 		super.addToast(toastIn);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void render(GuiGraphics graphics)
 	{

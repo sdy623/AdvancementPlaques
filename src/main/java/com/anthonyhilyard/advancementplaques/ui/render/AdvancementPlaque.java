@@ -30,6 +30,7 @@ public class AdvancementPlaque
 	private long animationTime = -1L;
 	private long visibleTime = -1L;
 	private boolean hasPlayedSound = false;
+	private boolean hasTakenScreenshot = false;
 	private Visibility visibility = Visibility.SHOW;
 	private Minecraft mc;
 	private CustomItemRenderer itemRenderer;
@@ -63,7 +64,6 @@ public class AdvancementPlaque
 		return visibility == Visibility.HIDE ? 1.0f - f : f;
 	}
 
-	@SuppressWarnings("deprecation")
 	private Visibility drawPlaque(GuiGraphics graphics, long displayTime)
 	{
 		// Don't show plaques while paused or loading.
@@ -218,6 +218,21 @@ public class AdvancementPlaque
 						AdvancementPlaques.LOGGER.warn("Tried to play a custom sound for an advancement, but that sound was not registered! Install Advancement Plaques on the server or mute tasks and goals in the config file.");
 					}
 				}
+
+				// If Advancement Screenshot is installed and we're ready to take a screenshot, do it.
+				if (displayTime >= fadeInTime + fadeOutTime && alpha == 1.0f && !hasTakenScreenshot && FabricLoader.getInstance().isModLoaded("advancementscreenshot"))
+				{
+					try
+					{
+						Class.forName("com.anthonyhilyard.advancementplaques.compat.AdvancementScreenshotHandler").getMethod("takeScreenshot").invoke(null);
+						hasTakenScreenshot = true;
+					}
+					catch (Exception e)
+					{
+						AdvancementPlaques.LOGGER.error(e);
+					}
+				}
+				RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
 			}
 
 			if (displayTime < fadeInTime + fadeOutTime)
@@ -255,7 +270,6 @@ public class AdvancementPlaque
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	public boolean render(int screenWidth, int index, GuiGraphics graphics)
 	{
 		long currentTime = Util.getMillis();

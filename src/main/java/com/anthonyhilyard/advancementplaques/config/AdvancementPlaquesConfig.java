@@ -8,17 +8,17 @@ import java.util.function.Supplier;
 import com.anthonyhilyard.advancementplaques.Loader;
 import com.electronwill.nightconfig.core.Config;
 
-import fuzs.forgeconfigapiport.api.config.v2.ModConfigEvents;
+import fuzs.forgeconfigapiport.fabric.api.forge.v4.ForgeModConfigEvents;
 
 import org.apache.commons.lang3.tuple.Pair;
 
-import net.minecraft.network.chat.TextColor;
 import net.fabricmc.loader.api.FabricLoader;
+
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.DisplayInfo;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.ResourceLocation;
-
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
@@ -26,7 +26,6 @@ import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
 import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 import net.minecraftforge.fml.config.ModConfig;
 
-@SuppressWarnings("deprecation")
 public class AdvancementPlaquesConfig
 {
 	public static final ForgeConfigSpec SPEC;
@@ -122,8 +121,7 @@ public class AdvancementPlaquesConfig
 
 		build.pop().pop();
 
-		ModConfigEvents.reloading(Loader.MODID).register(AdvancementPlaquesConfig::onReload);
-
+		ForgeModConfigEvents.reloading(Loader.MODID).register(AdvancementPlaquesConfig::onReload);
 	}
 
 	private static boolean advancementEntryMatches(AdvancementHolder advancementHolder, String entry)

@@ -7,7 +7,7 @@ import net.minecraft.client.gui.components.toasts.ToastComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 
-import fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry;
+import fuzs.forgeconfigapiport.fabric.api.forge.v4.ForgeConfigRegistry;
 import net.minecraftforge.fml.config.ModConfig;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -17,7 +17,6 @@ import org.apache.logging.log4j.Logger;
 import com.anthonyhilyard.advancementplaques.config.AdvancementPlaquesConfig;
 import com.anthonyhilyard.advancementplaques.ui.AdvancementPlaquesToastGui;
 
-@SuppressWarnings("deprecation")
 public class AdvancementPlaques
 {
 	public static final Logger LOGGER = LogManager.getLogger(Loader.MODID);

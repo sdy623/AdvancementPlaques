@@ -25,17 +25,18 @@
 	"accessWidener": "advancementplaques.accesswidener",
 
 	"depends": {
-		"fabricloader": ">=0.14.21",
+		"fabricloader": ">=0.15.0",
 		"fabric": "*",
 		"minecraft": ">=1.20.4",
 		"java": ">=17",
-		"forgeconfigapiport": ">=20.4",
+		"forgeconfigapiport": ">=20.4.3",
 		"iceberg": ">=1.1.18"
 	},
 	"suggests": {
 		"waila": "*",
 		"jade": ">=13.2.0",
-		"toastmanager": "*"
+		"toastmanager": "*",
+		"advancementscreenshot": ">=4.7"
 	},
 	"conflicts": {
 		"canvas": "*"
